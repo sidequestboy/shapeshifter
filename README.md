@@ -1,8 +1,8 @@
 shapeshifter
 ============
 
-Python suite to help solve Neopets' Shapeshifter puzzles.  OOP
---------------------------------------------------------------
+Python library to help solve Neopets' Shapeshifter puzzles.  OOP
+----------------------------------------------------------------
 
 requires Python 3
 ###Basic Usage:
