@@ -66,10 +66,10 @@ class Game(object):
                 raise e
         self.num_possibilities = 1
         for shape in self.shapes:
-            shape.position_bound = (self.board.height-shape.height+1, self.board.width-shape.width+1)
+            shape.pos_bound = (self.board.height-shape.height+1, self.board.width-shape.width+1)
             shape.valid_positions = Positions([(row, col)
-                                               for row in range(shape.position_bound[0])
-                                               for col in range(shape.position_bound[1])
+                                               for row in range(shape.pos_bound[0])
+                                               for col in range(shape.pos_bound[1])
                                                ])
             self.num_possibilities *= len(shape.valid_positions)
 
@@ -80,7 +80,8 @@ class Game(object):
         if check and shape.current_position is not None:
             print('Attempted to place shape on board more than once rejected')
             return
-        if check and pos[0] < shape.position_bound[0] and pos[1] < shape.position_bound[1]:
+        if check and pos[0] >= 0 and pos[0] < shape.pos_bound[0] \
+                and pos[1] >= 0 and pos[1] < shape.pos_bound[1]:
             print('Attempted to place shape off of board rejected')
             return
         if self.board.dim == 2 and shape.dim == 2:
@@ -102,7 +103,6 @@ class Game(object):
                     self.board.values[shape.current_position[0]+row][shape.current_position[1]+col] ^= shape[row][col]
         else:
             for row in range(shape.height):
-                for col in range(shape.width):
                     self.board[shape.current_position[0]+row][shape.current_position[1]+col] = \
                         (self.board[shape.current_position[0]+row][shape.current_position[1]+col] -
                             shape[row][col]) % self.board.dim
@@ -111,7 +111,7 @@ class Game(object):
     def solved(self):
         """expects Board board"""
         if [list(arr) for arr in self.board.values] == self._goal and \
-            all(shape.current_position is not None for shape in self.shapes):
+                all(shape.current_position is not None for shape in self.shapes):
             print('success!')
             print('shapes:')
             print(self.shapes)
@@ -238,7 +238,7 @@ class Shape(object):
         self.height = len(raw_shape)
 
         self.string = [[str(value) for value in row] for row in self.values]
-        self.position_bound = None
+        self.pos_bound = None
         self.valid_positions = Positions([])
         self.current_position = None
 
