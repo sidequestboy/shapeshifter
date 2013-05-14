@@ -9,6 +9,7 @@ class Game(object):
         super(Game, self).__init__()
         raw_board = []
         raw_shapes = []
+        dim = None
         with open(filename) as f:
             board, shape = False, False
             for line in (l.replace('\n', '').replace(' ', '') for l in f):
@@ -54,7 +55,7 @@ class Game(object):
                 exit(0)
 
             try:
-                self.board = Board(raw_board)
+                self.board = Board(raw_board, dim)
             except NameError as e:
                 print("Missing 'Board:' line?")
                 raise e
