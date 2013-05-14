@@ -181,6 +181,10 @@ With this simple example, a brute-force approach works well. Let's try this. bru
 
 This is easiest to run from the command-line. Exit your python shell, make sure you are in the correct directory and run brute_force.py with input puzzles/simple_input.txt
 
+```
+>>> exit()
+```
+
 ```bash
 $ pwd
 /home/jamie/Desktop/shapeshifter
