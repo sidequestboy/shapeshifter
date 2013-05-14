@@ -23,7 +23,15 @@ class Game(object):
                     continue
 
                 if board:
-                    if line == '':
+                    if line.startswith('&'):
+                        l = line[1:]
+                        if l.startswith('dim='):
+                            l = l[4:]
+                            dim = int(l)
+                        else:
+                            print('unrecognized option {}'.format(line))
+                        continue
+                    elif line == '':
                         continue
                     else:
                         raw_board.append(line)
@@ -100,8 +108,8 @@ class Game(object):
 
     def solved(self):
         """expects Board board"""
-        if [list(arr) for arr in self.board.values] == self._goal and
-        all(shape.current_position is not None for shape in self.shapes):
+        if [list(arr) for arr in self.board.values] == self._goal and \
+            all(shape.current_position is not None for shape in self.shapes):
             print('success!')
             print('shapes:')
             print(self.shapes)
