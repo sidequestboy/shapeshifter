@@ -63,36 +63,45 @@ class Game(object):
                                                ])
             self.num_possibilities *= len(shape.valid_positions)
 
-        self.goal = [[0]*self.board.width for i in range(self.board.height)]
+        self._goal = [[0]*self.board.width for i in range(self.board.height)]
 
-    def place_shape(self, shape, pos, remove=False):
+    def place_shape(self, shape, pos, check=True):
         """expects Shape shape and tuple pos"""
+        if check and shape.current_position is not None:
+            print('Attempted to place shape on board more than once rejected')
+            return
+        if check and pos not in shape.valid_positions:
+            print('Attempted to place shape off of board rejected')
+            return
         if self.board.dim == 2 and shape.dim == 2:
             for row in range(shape.height):
                 for col in range(shape.width):
                     self.board.values[pos[0]+row][pos[1]+col] ^= shape[row][col]
-        elif remove is False:
+        else:
             for row in range(shape.height):
                 for col in range(shape.width):
                     self.board[pos[0]+row][pos[1]+col] = (self.board[pos[0]+row][pos[1]+col] + shape[row][col]) % self.board.dim
+        shape.current_position = pos
+
+    def remove_shape(self, shape):
+        if shape.current_position is None:
+            return
+        elif self.board.dim == 2 and shape.dim == 2:
+            for row in range(shape.height):
+                for col in range(shape.width):
+                    self.board.values[shape.current_position[0]+row][shape.current_position[1]+col] ^= shape[row][col]
         else:
             for row in range(shape.height):
                 for col in range(shape.width):
-                    self.board[pos[0]+row][pos[1]+col] = (self.board[pos[0]+row][pos[1]+col] - shape[row][col]) % self.board.dim
-        if remove is False:
-            shape.current_position = pos
-        else:
-            shape.current_position = None
-
-    def remove_shape(self, shape, pos):
-        if pos is None:
-            return
-        else:
-            self.place_shape(shape, pos, remove=True)
+                    self.board[shape.current_position[0]+row][shape.current_position[1]+col] = \
+                        (self.board[shape.current_position[0]+row][shape.current_position[1]+col] -
+                            shape[row][col]) % self.board.dim
+        shape.current_position = None
 
     def solved(self):
         """expects Board board"""
-        if [list(arr) for arr in self.board.values] == self.goal:
+        if [list(arr) for arr in self.board.values] == self._goal and
+        all(shape.current_position is not None for shape in self.shapes):
             print('success!')
             print('shapes:')
             print(self.shapes)

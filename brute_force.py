@@ -9,8 +9,8 @@ def brute_force(game):
     for updated_placement in valid_placements:
         iters += 1
         for shape in updated_placement:
-            game.remove_shape(shape, shape.current_position)
-            game.place_shape(shape, updated_placement[shape])
+            game.remove_shape(shape)
+            game.place_shape(shape, updated_placement[shape], check=False)
         if game.solved():
             break
     print('Took {} iterations'.format(iters))
