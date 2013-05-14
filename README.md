@@ -201,7 +201,7 @@ places: (0, 0) (0, 0) (0, 0) (0, 0) (0, 0)
 Took 1 iterations
 ```
 
-Now we see how simple of a puzzle that was! brute_force solved that pretty quickly. To see where brute_force meets its limitations, try it on input.txt.
+Now we see how simple of a puzzle that was! brute_force solved that pretty quickly. To see where brute_force meets its limitations, try it on level_31.txt.
 
 Those are the basics!
 
