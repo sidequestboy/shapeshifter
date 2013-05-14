@@ -6,11 +6,11 @@ def brute_force(game):
     # solves in original order
     valid_placements = Brute_Valid_Placements(game)
     iters = 0
-    for updated_placement in valid_placements:
+    for next_placement in valid_placements:
         iters += 1
-        for shape in updated_placement:
+        for shape in next_placement:
             game.remove_shape(shape)
-            game.place_shape(shape, updated_placement[shape], check=False)
+            game.place_shape(shape, next_placement[shape], check=False)
         if game.solved():
             break
     print('Took {} iterations'.format(iters))
