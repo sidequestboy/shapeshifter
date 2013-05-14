@@ -56,6 +56,11 @@ or if you're feeling confident:
 $ python my_strategy.py level_31.txt
 ```
 
+###What is this 'shapeshifter' game?
+It's a Neopets game - check it out here:  
+http://www.neopets.com/medieval/shapeshifter_index.phtml  
+and check out the rules here:  
+http://www.neopets.com/medieval/shapeshifter_instruct.phtml
 
 ###How do I use shapes.py ?
 
