@@ -1,4 +1,3 @@
-from functools import total_ordering
 from array import array
 
 type_codes = 'BHILQ'
