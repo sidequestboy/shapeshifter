@@ -222,5 +222,62 @@ Some useful attributes of the game objects follow:
 ```shapes.shape``` <-- a shape (basically list of array()'s of ints wrapped in a class [one array per row])
 
 ###How do I enter in a new puzzle?
-To do.
+A puzzle file needs two main things: a 'Board:' line and a 'Shapes:' line.
 
+following the 'Board:' line, you can draw out the board. Every entry should be integer-valued in whatever base up to base 32 (this is the limit to how many board states there can be currently). I've not seen a puzzle with more than 3 states so far. 
+
+The relationship between states is inferred by their numbering; for a given state ```i```, it has a successor state ```(i+1) % game.board.dim``` and a predecessor state ```(i-1) % game.board.dim```. ```game.board.dim``` is also inferred from how many states there exist on your board.  
+
+E.g.
+
+    Board:
+    0 0 0 0
+    1 0 1 0
+    0 2 0 2
+    3 0 3 0
+
+The constructor for game.board will infer that ```game.board.dim == 4```, the states map 0 -> 1 -> 2 -> 3 -> 0, and that 0 is the goal state.
+
+if you wish for the board to have more states than would be implicitly inferred, you may add an option line under the 'Board:' line, and before the board, prefacing the option name with an ampersand like so:  
+
+    Board:
+    & dim = 4
+    0 3 1 1
+    3 2 3 1
+    3 3 1 1
+    0 2 2 1
+    1 1 1 0
+
+The available board options are: dim  
+Note that the argument will be read as a base-10 integer.  
+
+The 'Shapes:' line syntax is identical to the 'Board:' line syntax except that there are no special options; shapes are pretty much static, and always have dimension 2 as far as I know. Furthermore, shapes are separated by an empty line. 
+
+E.g.
+
+    Shapes:
+    1 1 1
+    0 0 1
+    0 0 1
+    1 1 0
+
+    1 1 1
+    1 0 1
+    1 1 1
+    1 0 1
+
+    1 0 1
+    1 1 1
+    1 0 1
+    1 0 1
+
+    1 1 1
+    1 0 0
+    1 1 1
+    1 0 0
+    1 1 1
+
+    1 0 1
+    1 0 1
+    1 1 1
+    1 0 1
