@@ -53,7 +53,7 @@ $ python my_strategy.py simple_input.txt
 or if you're feeling confident:
 
 ```bash
-$ python my_strategy.py input.txt
+$ python my_strategy.py level_31.txt
 ```
 
 
