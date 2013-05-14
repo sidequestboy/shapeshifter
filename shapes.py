@@ -1,3 +1,4 @@
+from functools import total_ordering
 from array import array
 
 type_codes = 'BHILQ'
@@ -159,7 +160,7 @@ class Positions(object):
         self.reorder()
 
 
-class Shapes(object):
+class Shapes(list):
     """simply a wrapper for list of shapes wrt a board"""
     def __init__(self, raw_shape_list, board):
         super(Shapes, self).__init__()
@@ -237,7 +238,7 @@ class Shape(object):
         self.width = w
         self.height = len(raw_shape)
 
-        self.string = [[str(value) for value in row] for row in self.values]
+        self._string = [[str(value) for value in row] for row in self.values]
         self.pos_bound = None
         self.valid_positions = Positions([])
         self.current_position = None
@@ -253,7 +254,10 @@ class Shape(object):
 
     def __str__(self):
         """String representation"""
-        return '\n'.join([' '.join(row) for row in self.string])
+        return '\n'.join([' '.join(row) for row in self._string])
+
+    def __eq__(self, other):
+        return True if self.values == other.values else False
 
 
 def max_from_string(from_string):
