@@ -176,7 +176,7 @@ With this simple example, a brute-force approach works well. Let's try this. bru
 
 This is easiest to run from the command-line. Exit your python shell, make sure you are in the correct directory and run brute_force.py with input simple_input.txt
 
-```
+```bash
 $ pwd
 /home/jamie/Desktop/shapeshifter
 $ python brute_force.py simple_input.txt
@@ -207,19 +207,19 @@ Those are the basics!
 
 Some useful attributes of the game objects follow:
 
-game = shapes.Game('input.txt'): <-- the game object!  
-    game.board <-- the board  
-        game.board.dim <-- the number of states for board squares  
-        game.board.height <-- the height of the board in squares  
-        game.board.width <-- the width of the board in squares  
-        game.board.values <-- list of array()'s of ints (one array() per row)  
+```game = shapes.Game('input.txt')```: <-- the game object!  
+    ```game.board``` <-- the board  
+        ```game.board.dim``` <-- the number of states for board squares  
+        ```game.board.height``` <-- the height of the board in squares  
+        ```game.board.width``` <-- the width of the board in squares  
+        ```game.board.values``` <-- list of array()'s of ints (one array() per row)  
 
-    game.shapes <-- a list of shapes (wrapped up nicely)  
-    game.num_possibilities <-- the number of possible configurations of shapes  
-    game.place_shape(shape, pos, check=True) <-- places Shape shape at tuple pos  
-    game.remove_shape(shape) <-- removes Shape shape from Board game.board  
-    game.solved() <-- returns True if game.board is solved and all shapes are used, False otherwise  
-shapes.shape <-- a shape (basically list of array()'s of ints wrapped in a class [one array per row])
+    ```game.shapes``` <-- a list of shapes (wrapped up nicely)  
+    ```game.num_possibilities``` <-- the number of possible configurations of shapes  
+    ```game.place_shape(shape, pos, check=True)``` <-- places Shape shape at tuple pos  
+    ```game.remove_shape(shape)``` <-- removes Shape shape from Board game.board  
+    ```game.solved()``` <-- returns True if game.board is solved and all shapes are used, False otherwise  
+```shapes.shape``` <-- a shape (basically list of array()'s of ints wrapped in a class [one array per row])
 
 ###How do I enter in a new puzzle?
 To do.
