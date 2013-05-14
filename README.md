@@ -166,7 +166,7 @@ For fun, let's try placing the shape in an invalid position, say (3, 3).
 Attempted to place shape off of board rejected
 ```
 
-But wait a minute, did it just check the whole ```valid_positions``` list for (3, 3)? that doesn't seem very efficient! It isn't! For better efficiency, pass the keyword argument ```check=False``` into ```place_shape()```. But be careful, an error will stop execution.
+But wait a minute, this sounds like a lot of checks. Well, for better efficiency (less checks), pass the keyword argument ```check=False``` into ```place_shape()```. But be careful, an error will stop execution.
 
 ```python
 >>> place_shape(game.shapes[1], (3,3), check=False)
