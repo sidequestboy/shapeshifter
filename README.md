@@ -47,13 +47,13 @@ if __name__ == "__main__":
 
 
 ```bash
-$ python my_strategy.py simple_input.txt
+$ python my_strategy.py puzzles/simple_input.txt
 ```
 
 or if you're feeling confident:
 
 ```bash
-$ python my_strategy.py level_31.txt
+$ python my_strategy.py puzzles/level_31.txt
 ```
 
 ###What is this 'shapeshifter' game?
@@ -80,11 +80,11 @@ now that we have python shell, let's explore. Import the shapes.py module:
 >>> import shapes
 ```
 
-Now let's create a simple game. One is defined in simple_input.txt.
+Now let's create a simple game. One is defined in puzzles/simple_input.txt.
 The game is constructed like so:
 
 ```python
->>> game = shapes.Game('simple_input.txt')
+>>> game = shapes.Game('puzzles/simple_input.txt')
 ```
 
 let's take a look at the board.
@@ -179,12 +179,12 @@ IndexError: list index out of range
 
 With this simple example, a brute-force approach works well. Let's try this. brute_force.py will check every possibility in order.
 
-This is easiest to run from the command-line. Exit your python shell, make sure you are in the correct directory and run brute_force.py with input simple_input.txt
+This is easiest to run from the command-line. Exit your python shell, make sure you are in the correct directory and run brute_force.py with input puzzles/simple_input.txt
 
 ```bash
 $ pwd
 /home/jamie/Desktop/shapeshifter
-$ python brute_force.py simple_input.txt
+$ python brute_force.py puzzles/simple_input.txt
 number of possibilities: 800000
 success!
 shapes:
@@ -206,13 +206,13 @@ places: (0, 0) (0, 0) (0, 0) (0, 0) (0, 0)
 Took 1 iterations
 ```
 
-Now we see how simple of a puzzle that was! brute_force solved that pretty quickly. To see where brute_force meets its limitations, try it on level_31.txt.
+Now we see how simple of a puzzle that was! brute_force solved that pretty quickly. To see where brute_force meets its limitations, try it on puzzles/level_31.txt.
 
 Those are the basics!
 
 Some useful attributes of the game objects follow:
 
-```game = shapes.Game('input.txt')```: <-- the game object!  
+```game = shapes.Game('puzzles/input.txt')```: <-- the game object!  
 ```game.board``` <-- the board  
 ```game.board.dim``` <-- the number of states for board squares  
 ```game.board.height``` <-- the height of the board in squares  
